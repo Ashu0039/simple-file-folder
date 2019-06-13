@@ -37,6 +37,9 @@ Will create a build folder with minified code for production.
 ## Select an item
 Click on any item (folder/file) to select it. Options available (Rename/Delete) will appear on the title bar.
 
+## Unselect an item
+Click on the same item (folder/file) to unselect it. OR. Click on the (X) icon in the titlebar.
+
 ## Open folder
 Double click on any folder to open it.<br><br>
 OR<br>
