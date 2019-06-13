@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/simple-file-folder/static/css/main.0f1ee1a7.chunk.css",
-    "main.js": "/simple-file-folder/static/js/main.f735e2ae.chunk.js",
-    "main.js.map": "/simple-file-folder/static/js/main.f735e2ae.chunk.js.map",
+    "main.js": "/simple-file-folder/static/js/main.ee8b36b4.chunk.js",
+    "main.js.map": "/simple-file-folder/static/js/main.ee8b36b4.chunk.js.map",
     "runtime~main.js": "/simple-file-folder/static/js/runtime~main.b438b0a3.js",
     "runtime~main.js.map": "/simple-file-folder/static/js/runtime~main.b438b0a3.js.map",
-    "static/js/2.dba7a97c.chunk.js": "/simple-file-folder/static/js/2.dba7a97c.chunk.js",
-    "static/js/2.dba7a97c.chunk.js.map": "/simple-file-folder/static/js/2.dba7a97c.chunk.js.map",
+    "static/js/2.f076899e.chunk.js": "/simple-file-folder/static/js/2.f076899e.chunk.js",
+    "static/js/2.f076899e.chunk.js.map": "/simple-file-folder/static/js/2.f076899e.chunk.js.map",
     "index.html": "/simple-file-folder/index.html",
-    "precache-manifest.78b870189e3b3a619a1242228012455a.js": "/simple-file-folder/precache-manifest.78b870189e3b3a619a1242228012455a.js",
+    "precache-manifest.688d3b518a8ecb86b54c51c26ab25652.js": "/simple-file-folder/precache-manifest.688d3b518a8ecb86b54c51c26ab25652.js",
     "service-worker.js": "/simple-file-folder/service-worker.js",
     "static/css/main.0f1ee1a7.chunk.css.map": "/simple-file-folder/static/css/main.0f1ee1a7.chunk.css.map"
   }
