@@ -10,6 +10,7 @@ import { FOLDER, FILE } from './constants';
 class App extends Component {
   state = {
     data: initialData,
+    selectedEntity: null,
   }
 
   addNewEntityAndChildren = (entity) => {
@@ -53,9 +54,33 @@ class App extends Component {
 
     this.addNewEntityAndChildren(newFile);
   }
+
+  entitySelected = (entity) => {
+    console.log('select entity --> ', entity);
+    const { selectedEntity } = this.state;
+    // Reset selection if same entity clicked again
+    const newSelectedEntity = selectedEntity && selectedEntity.id === entity.id ? null : entity;
+    this.setState({ selectedEntity: newSelectedEntity });
+  }
+
+  deleteEntity = (entity) => {
+    
+  }
+
+  deleteSelectedEntity = () => {
+    const { selectedEntity } = this.state;
+    if (selectedEntity) {
+      const answer = prompt(`Please enter YES if you want to delete ${selectedEntity.title}`);
+      if (answer && answer.trim().toLowerCase === 'yes') {
+        console.log('delete selected entity --> ', selectedEntity);
+        this.deleteEntity(selectedEntity);
+      }
+    }
+    this.setState({ selectedEntity: null });
+  }
   
   render() {
-    const { data } = this.state;
+    const { data, selectedEntity } = this.state;
 
     return (
       <div className="App">
@@ -66,6 +91,9 @@ class App extends Component {
               data={data}
               addFile={this.addFile}
               addFolder={this.addFolder}
+              entitySelected={this.entitySelected}
+              selectedEntity={selectedEntity}
+              deleteSelectedEntity={this.deleteSelectedEntity}
               {...props}
             />
           } 

@@ -8,6 +8,10 @@
   color: white;
 }
 
+.title-bar.selected {
+  background: lightskyblue;
+}
+
 .title-bar .title {
   font-size: 28px;
 }

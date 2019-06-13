@@ -39,7 +39,16 @@ const getFolderContents = ({ children, data }) => {
   return folderContent;
 }
 
-const Explorer = ({ data, addFile, addFolder, match, history  }) => {
+const Explorer = ({ 
+    data,
+    addFile,
+    addFolder,
+    entitySelected,
+    deleteSelectedEntity,
+    selectedEntity,
+    match,
+    history
+  }) => {
   const createNewEntity = ({ fn, title }) => {
     const { folderId } = match.params;
     fn({ id: uuid(), title, parent: folderId || ROOT });
@@ -82,9 +91,11 @@ const Explorer = ({ data, addFile, addFolder, match, history  }) => {
   return (
     <>
       <TitleBar
-        title={title}
+        title={ selectedEntity ? selectedEntity.title : title}
         addFolder={askNameForFolder}
         addFile={askNameForFile}
+        selectedEntity={selectedEntity}
+        deleteSelectedEntity={deleteSelectedEntity}
       />
       <div className="Explorer">
         {
@@ -93,6 +104,8 @@ const Explorer = ({ data, addFile, addFolder, match, history  }) => {
               key={c.id} 
               entity={c}
               open={c.type === FOLDER ? openFolder : null}
+              select={(e) => entitySelected(e)}
+              selected={selectedEntity && selectedEntity.id === c.id}
             />)
             : 'Folder is empty'
         }
@@ -105,12 +118,17 @@ Explorer.propTypes = {
   data: PropTypes.shape({}),
   addFolder: PropTypes.func,
   addFile: PropTypes.func,
+  entitySelected: PropTypes.func,
+  selectedEntity: PropTypes.shape({}),
+  deleteSelectedEntity: PropTypes.func.isRequired,
 };
 
 Explorer.defaultProps = {
   data: {},
   addFolder: () => {},
   addFile: () => {},
+  entitySelected: () => {},
+  selectedEntity: null,
 };
 
 export default Explorer;

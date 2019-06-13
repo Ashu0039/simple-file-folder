@@ -5,8 +5,11 @@ import EntityIcon from './EntityIcon';
 import './Entity.css';
 import './Folder.css';
 
-const Folder = ({ entity, open }) => (
-  <div className="folder entity" onDoubleClick={() => open(entity.id)}>
+const Folder = ({ entity, select, selected, open }) => (
+  <div className={`folder entity ${selected ? 'selected' : ''}`}
+    onClick={() => select(entity)}
+    onDoubleClick={() => open(entity.id)}
+  >
     <EntityIcon type={entity.type} />
     <div className="title">{ entity.title }</div>
   </div>
