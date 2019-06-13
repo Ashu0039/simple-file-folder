@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './TitleBar.css';
+import { FOLDER } from '../constants';
 
-const TitleBar = ({ title, addFolder, addFile, selectedEntity, deleteSelectedEntity, renameEntity, unselect, canGoBack, back }) => (
+const TitleBar = ({ title, addFolder, addFile, selectedEntity, deleteSelectedEntity, renameEntity, unselect, canGoBack, back, openFolder }) => (
   <div className={`title-bar ${selectedEntity ? 'selected' : ''}`}>
     <span className="title">
       {
@@ -30,6 +31,13 @@ const TitleBar = ({ title, addFolder, addFile, selectedEntity, deleteSelectedEnt
       {
         selectedEntity ? (
           <>
+            {
+              selectedEntity.type === FOLDER ? (
+                <span onClick={() => openFolder()}>
+                  <FontAwesomeIcon icon="folder-open" size="1x" /> Open
+                </span>
+              ) : ''
+            }
             <span onClick={() => renameEntity()}>
               <FontAwesomeIcon icon="edit" size="1x" /> Rename
             </span>

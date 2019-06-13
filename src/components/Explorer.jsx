@@ -117,6 +117,7 @@ class Explorer extends Component {
           unselect={() => entitySelected(null)}
           canGoBack={!!folderId}
           back={this.goBack}
+          openFolder={() => selectedEntity.type === FOLDER && this.openFolder(selectedEntity.id)}
         />
         <div className="Explorer">
           {
