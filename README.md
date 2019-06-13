@@ -31,3 +31,36 @@ You will also see any lint errors in the console.
 ### `npm run build`
 
 Will create a build folder with minified code for production.
+
+# How to
+
+## Select an item
+Click on any item (folder/file) to select it. Options available (Rename/Delete) will appear on the title bar.
+
+## Open folder
+Double click on any folder to open it.<br><br>
+OR<br>
+1. Select the item.
+2. Click the `Open` option available in the titlebar.
+
+## Rename an item
+1. Select the item to rename.
+2. Click on `Rename` option available in the titlebar.
+3. Enter new name in the prompt window.
+4. Click OK.
+
+## Delete an item
+1. Select the item to delete.
+2. Click on `Delete` option available in the titlebar.
+3. Enter 'YES' in the prompt window to confirm.
+4. Click OK.
+
+## Add new file
+1. Click on Add File option in the titlebar inside any folder.
+2. Enter file name in the prompt window.
+3. Click OK.
+
+## Add new folder
+1. Click on Add Folder option in the titlebar inside any folder.
+2. Enter folder name in the prompt window.
+3. Click OK.
