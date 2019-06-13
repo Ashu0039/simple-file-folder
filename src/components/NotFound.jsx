@@ -1,11 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const NotFound = () => (
-  <section>
-    <div>Folder Not Found</div>
-    <Link to="/">Click here to go home</Link>
-  </section>
+  <Redirect to="/" />
 );
 
 export default NotFound;
