@@ -6,12 +6,19 @@
   display: flex;
   flex-direction: column;
   user-select: none;
+  cursor: pointer;
 }
 
 .entity .title {
   height: 24px;
   font-weight: bold;
-  border-top: 2px solid saddlebrown;
+  border-top: 2px solid lightcoral;
   line-height: 24px;
   padding: 12px;
+}
+
+.entity.selected .title {
+  background: lightskyblue;
+  color: white;
+  border-color: white;
 }

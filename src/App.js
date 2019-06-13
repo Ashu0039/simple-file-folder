@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faFile, faFolder, faEdit, faTrash, faTimes, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 import Explorer from './components/Explorer';
 import initialData from './initialData';
 
 import './App.css';
 import { FOLDER, FILE } from './constants';
+
+library.add(faFile, faFolder, faEdit, faTrash, faTimes, faArrowLeft);
 
 class App extends Component {
   state = {

@@ -19,4 +19,15 @@
 .title-bar .options span {
   margin: 0 6px;
   cursor: pointer;
+  transition: background 0.2s ease;
+  padding: 6px;
+  border-radius: 3px;
+}
+
+.title-bar.selected .options span:hover {
+  background: rgb(108, 164, 199);
+}
+
+.title-bar .options span:hover {
+  background: rgb(196, 103, 103);
 }
