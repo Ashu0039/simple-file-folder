@@ -1,0 +1,12 @@
+.entity {
+  height: 200px;
+  width: 200px;
+  border: 1px solid lightgreen;
+  border-radius: 3px;
+  display: flex;
+}
+
+.entity .title {
+  height: 48px;
+  font-weight: bold;
+}
