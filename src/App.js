@@ -63,15 +63,55 @@ class App extends Component {
     this.setState({ selectedEntity: newSelectedEntity });
   }
 
+  removeEntityAndItsChildren = (data, entityId) => {
+    let updatedData = { ...data };
+    const entity = updatedData[entityId];
+
+    const { children } = entity;
+
+    if (children || children) {
+      for(let i=0; i<children.length;i++) {
+        const childEntity = children[i];
+        updatedData = this.removeEntityAndItsChildren(updatedData, childEntity);
+      }
+    }
+
+    delete updatedData[entityId];
+
+    return updatedData;
+  }
+
+  removeEntityAsChild = ({ data, parentId, entityId }) => {
+    const updatedData = { ...data };
+    const parentOfEntity = updatedData[parentId];
+    const { children } = parentOfEntity;
+    const posOfEntity = children.findIndex(i => i === entityId);
+
+    if (posOfEntity > -1) {
+      const updatedChildren = [...children.slice(0, posOfEntity), ...children.slice(posOfEntity + 1)];
+      const updatedParent = {
+        ...parentOfEntity,
+        children: updatedChildren,
+      };
+      updatedData[parentId] = updatedParent;
+    }
+    return updatedData;
+  }
+
   deleteEntity = (entity) => {
-    
+    const { data } = this.state;
+    // Remove entity as a children from dataset
+    const uData = this.removeEntityAsChild({ data, parentId: entity.parent, entityId: entity.id });
+    // Remove entity and its children from dataset
+    const updatedData = this.removeEntityAndItsChildren(uData, entity.id);
+    this.setState({ data: updatedData });
   }
 
   deleteSelectedEntity = () => {
     const { selectedEntity } = this.state;
     if (selectedEntity) {
       const answer = prompt(`Please enter YES if you want to delete ${selectedEntity.title}`);
-      if (answer && answer.trim().toLowerCase === 'yes') {
+      if (answer) {
         console.log('delete selected entity --> ', selectedEntity);
         this.deleteEntity(selectedEntity);
       }

@@ -26,8 +26,15 @@ const initialData = {
     title: 'Folder 2',
     type: FOLDER,
     parent: 'folder1',
-    children: [],
+    children: ['folder3'],
   },
+  folder3: {
+    id: 'folder3',
+    title: 'Folder 3',
+    type: FOLDER,
+    parent: 'folder2',
+    children: [],
+  }
 };
 
 export default initialData;
