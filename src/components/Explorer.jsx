@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uuid from 'uuid';
 
 import './Explorer.css';
 import { FOLDER, FILE, ROOT } from '../constants';
@@ -37,7 +38,30 @@ const getFolderContents = ({ children, data }) => {
   return folderContent;
 }
 
-const Explorer = ({ data, match }) => {
+const Explorer = ({ data, addFile, addFolder, match }) => {
+  const createNewEntity = ({ fn, title }) => {
+    const { folderId } = match.params;
+    fn({ id: uuid(), title, parent: folderId || ROOT });
+  };
+  
+  const askNameForFolder = () => {
+    const title = prompt('Enter folder name', 'New Folder');
+
+    if (title) {
+      console.log('adding new folder --> ', title);
+      createNewEntity({ fn: addFolder, title });
+    }
+  };
+
+  const askNameForFile = () => {
+    const title = prompt('Enter file name', 'New File');
+
+    if (title) {
+      console.log('adding new file --> ', title);
+      createNewEntity({ fn: addFile, title });
+    }
+  };
+
   const { folderId } = match.params;
 
   if (folderId && !data.hasOwnProperty(folderId)) {
@@ -51,7 +75,11 @@ const Explorer = ({ data, match }) => {
 
   return (
     <>
-      <TitleBar title={title} />
+      <TitleBar
+        title={title}
+        addFolder={askNameForFolder}
+        addFile={askNameForFile}
+      />
       <div className="Explorer">
         {
           content.length ? content.map(c => 
@@ -65,10 +93,14 @@ const Explorer = ({ data, match }) => {
 
 Explorer.propTypes = {
   data: PropTypes.shape({}),
+  addFolder: PropTypes.func,
+  addFile: PropTypes.func,
 };
 
 Explorer.defaultProps = {
   data: {},
+  addFolder: () => {},
+  addFile: () => {},
 };
 
 export default Explorer;

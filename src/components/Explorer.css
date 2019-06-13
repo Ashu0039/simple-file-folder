@@ -2,4 +2,8 @@
   flex: 1;
   background: #fdfdfd;
   padding: 36px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 25px;
+  grid-auto-flow: dense;
 }

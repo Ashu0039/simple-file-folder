@@ -4,9 +4,13 @@
   border: 1px solid lightgreen;
   border-radius: 3px;
   display: flex;
+  flex-direction: column;
 }
 
 .entity .title {
-  height: 48px;
+  height: 24px;
   font-weight: bold;
+  border-top: 2px solid saddlebrown;
+  line-height: 24px;
+  padding: 12px;
 }

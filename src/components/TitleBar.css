@@ -3,9 +3,16 @@
   background: lightcoral;
   line-height: 72px;
   padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
 }
 
 .title-bar .title {
-  color: white;
   font-size: 28px;
+}
+
+.title-bar .options span {
+  margin: 0 6px;
+  cursor: pointer;
 }

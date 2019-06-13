@@ -2,14 +2,23 @@ import React from 'react';
 import { FOLDER, FILE } from '../constants';
 
 const EntityIcon = ({ type }) => {
+  let icon = '';
   switch(type) {
     case FOLDER:
-      return <div>FOLDER Icon</div>;
+      icon = 'FOLDER Icon';
+      break;
     case FILE:
-      return <div>FILE Icon</div>;
+      icon = 'FILE Icon';
+      break;
     default:
-      return <div>UNKNOWN Type</div>
+      icon = 'UNKNOWN Type';
   }
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flex: 1 }}>
+      { icon }
+    </div>
+  )
 }
 
 export default EntityIcon;
