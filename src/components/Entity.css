@@ -1,7 +1,7 @@
 .entity {
   height: 200px;
   width: 200px;
-  border: 1px solid lightgreen;
+  box-shadow: 0px 0px 3px 1px lightcoral;
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -9,10 +9,14 @@
   cursor: pointer;
 }
 
+.entity.selected {
+  box-shadow: 0px 0px 3px 1px lightblue;
+}
+
 .entity .title {
   height: 24px;
   font-weight: bold;
-  border-top: 2px solid lightcoral;
+  border-top: 2px solid lightgray;
   line-height: 24px;
   padding: 12px;
 }

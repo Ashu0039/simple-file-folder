@@ -115,7 +115,7 @@ class Explorer extends Component {
           deleteSelectedEntity={deleteSelectedEntity}
           renameEntity={renameEntity}
           unselect={() => entitySelected(null)}
-          canGoBack={folderId}
+          canGoBack={!!folderId}
           back={this.goBack}
         />
         <div className="Explorer">
