@@ -81,6 +81,10 @@ class Explorer extends Component {
     this.props.history.push(folderId);
   }
 
+  goBack = () => {
+    this.props.history.goBack();
+  }
+
   render() {
     const {
       data,
@@ -111,6 +115,8 @@ class Explorer extends Component {
           deleteSelectedEntity={deleteSelectedEntity}
           renameEntity={renameEntity}
           unselect={() => entitySelected(null)}
+          canGoBack={folderId}
+          back={this.goBack}
         />
         <div className="Explorer">
           {
