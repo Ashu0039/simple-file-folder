@@ -4,10 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './TitleBar.css';
 
-const TitleBar = ({ title, addFolder, addFile, selectedEntity, deleteSelectedEntity, renameEntity }) => (
+const TitleBar = ({ title, addFolder, addFile, selectedEntity, deleteSelectedEntity, renameEntity, unselect }) => (
   <div className={`title-bar ${selectedEntity ? 'selected' : ''}`}>
     <span className="title">
-      { selectedEntity ? <FontAwesomeIcon icon="times" size="sm" style={{marginRight: 4 }} /> : ''}
+      { selectedEntity ? 
+        <FontAwesomeIcon
+          onClick={() => unselect()}
+          icon="times" 
+          size="sm"
+          style={{marginRight: 12, cursor: 'pointer' }}
+        />
+        : ''}
       {title}
     </span>
     <div className="options">
@@ -43,6 +50,7 @@ TitleBar.propTypes = {
   selectedEntity: PropTypes.shape({}),
   deleteSelectedEntity: PropTypes.func.isRequired,
   renameEntity: PropTypes.func.isRequired,
+  unselect: PropTypes.func.isRequired,
 };
 
 TitleBar.defaultProps = {

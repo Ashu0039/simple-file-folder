@@ -110,6 +110,7 @@ class Explorer extends Component {
           selectedEntity={selectedEntity}
           deleteSelectedEntity={deleteSelectedEntity}
           renameEntity={renameEntity}
+          unselect={() => entitySelected(null)}
         />
         <div className="Explorer">
           {
