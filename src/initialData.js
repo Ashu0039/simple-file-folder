@@ -18,6 +18,7 @@ const initialData = {
   file1: {
     id: 'file1',
     title: 'File 1',
+    parent: 'folder1',
     type: FILE,
   },
   folder2: {

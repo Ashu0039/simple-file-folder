@@ -5,6 +5,7 @@
   border-radius: 3px;
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
 
 .entity .title {

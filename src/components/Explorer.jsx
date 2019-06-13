@@ -13,14 +13,15 @@ const DefaultEntity = () => (
   <div>Entity type not compatible</div>
 );
 
-const RenderEntity = ({ entity }) => {
+const RenderEntity = ({ ...props }) => {
+  const { entity } = props;
   const { type } = entity;
 
   switch(type) {
     case FOLDER:
-      return <Folder entity={entity} />;
+      return <Folder {...props} />;
     case FILE:
-      return <File entity={entity} />
+      return <File {...props} />
     default:
       return <DefaultEntity />
   }
@@ -38,7 +39,7 @@ const getFolderContents = ({ children, data }) => {
   return folderContent;
 }
 
-const Explorer = ({ data, addFile, addFolder, match }) => {
+const Explorer = ({ data, addFile, addFolder, match, history  }) => {
   const createNewEntity = ({ fn, title }) => {
     const { folderId } = match.params;
     fn({ id: uuid(), title, parent: folderId || ROOT });
@@ -62,6 +63,11 @@ const Explorer = ({ data, addFile, addFolder, match }) => {
     }
   };
 
+  const openFolder = (folderId) => {
+    console.log('open folder --> ', folderId);
+    history.push(folderId);
+  }
+
   const { folderId } = match.params;
 
   if (folderId && !data.hasOwnProperty(folderId)) {
@@ -83,7 +89,11 @@ const Explorer = ({ data, addFile, addFolder, match }) => {
       <div className="Explorer">
         {
           content.length ? content.map(c => 
-            <RenderEntity key={c.id} entity={c} />)
+            <RenderEntity
+              key={c.id} 
+              entity={c}
+              open={c.type === FOLDER ? openFolder : null}
+            />)
             : 'Folder is empty'
         }
       </div>
