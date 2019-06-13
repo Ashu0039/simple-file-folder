@@ -1,11 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './TitleBar.css';
 
-const TitleBar = () => (
+const TitleBar = ({ title }) => (
   <div className="title-bar">
-    <span className="title">Home</span>
+    <span className="title">{title}</span>
   </div>
 );
+
+TitleBar.propTypes = {
+  title: PropTypes.string,
+};
+
+TitleBar.defaultProps = {
+  title: '',
+};
 
 export default TitleBar;

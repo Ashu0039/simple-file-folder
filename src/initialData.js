@@ -6,14 +6,14 @@ const initialData = {
     title: 'Home',
     type: FOLDER,
     parent: null,
-    content: [ 'folder1' ],
+    children: [ 'folder1' ],
   },
   folder1: {
     id: 'folder1',
     title: 'Folder 1',
     type: FOLDER,
     parent: ROOT,
-    content: [ 'file1', 'folder2' ],
+    children: [ 'file1', 'folder2' ],
   },
   file1: {
     id: 'file1',
@@ -25,7 +25,7 @@ const initialData = {
     title: 'Folder 2',
     type: FOLDER,
     parent: 'folder1',
-    content: [],
+    children: [],
   },
 };
 
