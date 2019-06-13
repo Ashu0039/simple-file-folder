@@ -111,9 +111,33 @@ class App extends Component {
     const { selectedEntity } = this.state;
     if (selectedEntity) {
       const answer = prompt(`Please enter YES if you want to delete ${selectedEntity.title}`);
-      if (answer) {
+      if (answer && answer.trim().toLowerCase() === 'yes') {
         console.log('delete selected entity --> ', selectedEntity);
         this.deleteEntity(selectedEntity);
+      }
+    }
+    this.setState({ selectedEntity: null });
+  }
+
+  updateEntityName = ({ id, newName }) => {
+    const { data } = this.state;
+    const updatedData = { ...data };
+    const entity = updatedData[id];
+    const updatedEntity = {
+      ...entity,
+      title: newName,
+    };
+
+    updatedData[id] = updatedEntity;
+    this.setState({ data: updatedData });
+  }
+
+  renameEntity = () => {
+    const { selectedEntity } = this.state;
+    if (selectedEntity) {
+      const newName = prompt('Enter new name', selectedEntity.title);
+      if (newName) {
+        this.updateEntityName({ id: selectedEntity.id, newName });
       }
     }
     this.setState({ selectedEntity: null });
@@ -134,6 +158,7 @@ class App extends Component {
               entitySelected={this.entitySelected}
               selectedEntity={selectedEntity}
               deleteSelectedEntity={this.deleteSelectedEntity}
+              renameEntity={this.renameEntity}
               {...props}
             />
           } 

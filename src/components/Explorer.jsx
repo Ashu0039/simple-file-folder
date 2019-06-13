@@ -45,6 +45,7 @@ const Explorer = ({
     addFolder,
     entitySelected,
     deleteSelectedEntity,
+    renameEntity,
     selectedEntity,
     match,
     history
@@ -96,6 +97,7 @@ const Explorer = ({
         addFile={askNameForFile}
         selectedEntity={selectedEntity}
         deleteSelectedEntity={deleteSelectedEntity}
+        renameEntity={renameEntity}
       />
       <div className="Explorer">
         {
@@ -121,6 +123,7 @@ Explorer.propTypes = {
   entitySelected: PropTypes.func,
   selectedEntity: PropTypes.shape({}),
   deleteSelectedEntity: PropTypes.func.isRequired,
+  renameEntity: PropTypes.func.isRequired,
 };
 
 Explorer.defaultProps = {
