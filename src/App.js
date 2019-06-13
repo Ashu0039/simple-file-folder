@@ -59,7 +59,7 @@ class App extends Component {
     console.log('select entity --> ', entity);
     const { selectedEntity } = this.state;
     // Reset selection if same entity clicked again
-    const newSelectedEntity = selectedEntity && selectedEntity.id === entity.id ? null : entity;
+    const newSelectedEntity = selectedEntity && entity && selectedEntity.id === entity.id ? null : entity;
     this.setState({ selectedEntity: newSelectedEntity });
   }
 

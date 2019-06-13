@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
 
@@ -39,81 +39,93 @@ const getFolderContents = ({ children, data }) => {
   return folderContent;
 }
 
-const Explorer = ({ 
-    data,
-    addFile,
-    addFolder,
-    entitySelected,
-    deleteSelectedEntity,
-    renameEntity,
-    selectedEntity,
-    match,
-    history
-  }) => {
-  const createNewEntity = ({ fn, title }) => {
-    const { folderId } = match.params;
+class Explorer extends Component {
+  componentWillMount() {
+    this.unlisten = this.props.history.listen((location, action) => {
+      // Reset entity selected on route change
+      this.props.entitySelected(null);
+    });
+  }
+
+  componentWillUnmount() {
+      this.unlisten();
+  }
+
+  createNewEntity = ({ fn, title }) => {
+    const { folderId } = this.props.match.params;
     fn({ id: uuid(), title, parent: folderId || ROOT });
-  };
-  
-  const askNameForFolder = () => {
+  }
+
+  askNameForFolder = () => {
+    const { addFolder } = this.props;
     const title = prompt('Enter folder name', 'New Folder');
 
     if (title) {
       console.log('adding new folder --> ', title);
-      createNewEntity({ fn: addFolder, title });
+      this.createNewEntity({ fn: addFolder, title });
     }
-  };
+  }
 
-  const askNameForFile = () => {
+  askNameForFile = () => {
     const title = prompt('Enter file name', 'New File');
-
+    const { addFile } = this.props;
     if (title) {
       console.log('adding new file --> ', title);
-      createNewEntity({ fn: addFile, title });
+      this.createNewEntity({ fn: addFile, title });
     }
-  };
+  }
 
-  const openFolder = (folderId) => {
+  openFolder = (folderId) => {
     console.log('open folder --> ', folderId);
-    history.push(folderId);
+    this.props.history.push(folderId);
   }
 
-  const { folderId } = match.params;
+  render() {
+    const {
+      data,
+      entitySelected,
+      deleteSelectedEntity,
+      renameEntity,
+      selectedEntity,
+    } = this.props;
 
-  if (folderId && !data.hasOwnProperty(folderId)) {
+    const { folderId } = this.props.match.params;
+
+    if (folderId && !data.hasOwnProperty(folderId)) {
+      return (
+        <NotFound />
+      )
+    }
+  
+    const { title, children } = getFolder({ folderId, data});
+    const content = getFolderContents({ children, data });
+  
     return (
-      <NotFound />
-    )
+      <>
+        <TitleBar
+          title={ selectedEntity ? selectedEntity.title : title}
+          addFolder={this.askNameForFolder}
+          addFile={this.askNameForFile}
+          selectedEntity={selectedEntity}
+          deleteSelectedEntity={deleteSelectedEntity}
+          renameEntity={renameEntity}
+        />
+        <div className="Explorer">
+          {
+            content.length ? content.map(c => 
+              <RenderEntity
+                key={c.id} 
+                entity={c}
+                open={c.type === FOLDER ? this.openFolder : null}
+                select={(e) => entitySelected(e)}
+                selected={selectedEntity && selectedEntity.id === c.id}
+              />)
+              : 'Folder is empty'
+          }
+        </div>
+      </>
+    );
   }
-
-  const { title, children } = getFolder({ folderId, data});
-  const content = getFolderContents({ children, data });
-
-  return (
-    <>
-      <TitleBar
-        title={ selectedEntity ? selectedEntity.title : title}
-        addFolder={askNameForFolder}
-        addFile={askNameForFile}
-        selectedEntity={selectedEntity}
-        deleteSelectedEntity={deleteSelectedEntity}
-        renameEntity={renameEntity}
-      />
-      <div className="Explorer">
-        {
-          content.length ? content.map(c => 
-            <RenderEntity
-              key={c.id} 
-              entity={c}
-              open={c.type === FOLDER ? openFolder : null}
-              select={(e) => entitySelected(e)}
-              selected={selectedEntity && selectedEntity.id === c.id}
-            />)
-            : 'Folder is empty'
-        }
-      </div>
-    </>
-  );
 }
 
 Explorer.propTypes = {
