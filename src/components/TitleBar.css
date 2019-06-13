@@ -1,0 +1,11 @@
+.title-bar {
+  height: 72px;
+  background: lightcoral;
+  line-height: 72px;
+  padding: 0 12px;
+}
+
+.title-bar .title {
+  color: white;
+  font-size: 28px;
+}
