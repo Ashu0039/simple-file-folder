@@ -7,10 +7,10 @@ const EntityIcon = ({ type }) => {
   let icon = '';
   switch(type) {
     case FOLDER:
-      icon = <FontAwesomeIcon icon="folder" size="5x" />;
+      icon = <FontAwesomeIcon icon="folder" size="5x" style={{ color: 'coral' }} />;
       break;
     case FILE:
-      icon = <FontAwesomeIcon icon="file" size="5x" />;
+      icon = <FontAwesomeIcon icon="file" size="5x" style={{ color: 'cornflowerblue' }} />;
       break;
     default:
       icon = 'UNKNOWN Type';

@@ -8,6 +8,7 @@ import Folder from './Folder';
 import File from './File';
 import TitleBar from './TitleBar';
 import NotFound from './NotFound';
+import EmptyFolder from './EmptyFolder';
 
 const DefaultEntity = () => (
   <div>Entity type not compatible</div>
@@ -120,7 +121,7 @@ class Explorer extends Component {
                 select={(e) => entitySelected(e)}
                 selected={selectedEntity && selectedEntity.id === c.id}
               />)
-              : 'Folder is empty'
+              : <EmptyFolder />
           }
         </div>
       </>
